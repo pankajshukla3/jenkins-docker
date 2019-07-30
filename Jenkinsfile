@@ -9,11 +9,11 @@ pipeline {
     skipStagesAfterUnstable()
   }
   stages {
-    stage('Cloning Git') {
+    /*stage('Cloning Git') {
       steps {
         git 'https://github.com/pankajshukla3/jenkins-docker.git'
       }
-    }
+    }*/
     stage('Building image') {
       steps{
         script {
