@@ -1,13 +1,19 @@
 pipeline {
   environment {
     registry = "pankajshukla3/jenkins-docker"
-    /*registryCredential = 'dockerhub'*/
+    registryCredential = 'dockerhub'
   }
-  agent { dockerfile true }
+  /*agent { dockerfile true }*/
+  agent any
   options {
     skipStagesAfterUnstable()
   }
   stages {
+    stage('Cloning Git') {
+      steps {
+        git 'https://github.com/pankajshukla3/jenkins-docker.git'
+      }
+    }
     stage('Building image') {
       steps{
         script {
@@ -22,8 +28,7 @@ pipeline {
 	}
 	stage('Test') {
 		steps {
-			bat 'node --version'
-			bat 'svn --version'
+			echo 'Testing'
 		}
 	}
 	stage('Deploy') {
